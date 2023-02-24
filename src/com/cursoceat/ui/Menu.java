@@ -9,7 +9,7 @@ import com.cursoceat.controller.Contactos;
 public class Menu extends Contactos {
 
 static ArrayList<Contactos> agenda=new ArrayList<Contactos>();
-	//metodo
+	//método
 static public void miMenu() {
 		int opcion;
 		do {
@@ -50,9 +50,30 @@ static void alta() {
 Contactos unCtto=new Contactos(nombre,telefono);
 agenda.add(unCtto);
 }	
+
+
 static void buscar() {
-	
+	String nombre;
+	boolean encontrado=false;
+	do {
+		System.out.println("Indique el nombre del contacto");
+		nombre= new Scanner(System.in).nextLine();
+	}while(nombre.isEmpty());
+	nombre=pasarMayus(nombre);
+for (Contactos c:agenda) {
+	String nombreAgenda=c.getNombre();
+	if (nombreAgenda.startsWith(nombre)) {
+		System.out.println(c.getNombre()+ " --> "+ c.getTelefono()+"\n");
+		encontrado=true;
+	}
+
+}
+if(!encontrado) {
+	System.out.println("El contacto no existe ");
+}
 }	
+
+
 
 static void mostrar() {
 for(Contactos c:agenda) {
